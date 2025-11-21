@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    // REQUIRED: Add ALL external image hostnames here
     domains: [
       'media.istockphoto.com',
       'upload.wikimedia.org',
@@ -11,7 +10,13 @@ const nextConfig = {
       'pethelpful.com',
       'images.ctfassets.net',
       'cdn.britannica.com',
-      // If you use subdomains, they should be listed separately if not covered by a wildcard
+      'marketplace.canva.com',
+      'img.redro.pl',
+      'www.consumer.es',
+      'i.natgeofe.com',
+      'animalfactguide.com',
+      'wikipedia.com',
+      'cdn.mos.cms.futurecdn.net'
     ],
   },
 };
