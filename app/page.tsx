@@ -1,14 +1,12 @@
 // app/page.tsx
 
 import React from 'react';
-// Import the Image component from next/image for optimized images
 import Image from 'next/image';
 
-// --- 1. Updated Data Source with Image URLs ---
 interface Animal {
   name: string;
   imageUrl: string;
-  emoji: string; // Added emoji for extra cuteness
+  emoji: string;
 }
 
 const ALL_CUTE_ANIMALS: Animal[] = [
@@ -24,53 +22,84 @@ const ALL_CUTE_ANIMALS: Animal[] = [
   { name: 'Pomeranian', imageUrl: 'https://cdn.britannica.com/42/233842-050-E64243D7/Pomeranian-dog.jpg', emoji: '🐶' },
 ];
 
-// --- 2. Random Selection Logic (unchanged, but now works with Animal objects) ---
 const getRandomAnimals = (array: Animal[], count: number): Animal[] => {
   const shuffled = [...array].sort(() => 0.5 - Math.random());
   return shuffled.slice(0, count);
 };
 
-// --- 3. Page Component ---
 export default function HomePageWithPhotos() {
-  const NUMBER_OF_ANIMALS_TO_SHOW = 4; // Let's show 4 animals with photos
+  const NUMBER_OF_ANIMALS_TO_SHOW = 4; // Displaying exactly 4 animals
   const randomAnimals = getRandomAnimals(ALL_CUTE_ANIMALS, NUMBER_OF_ANIMALS_TO_SHOW);
 
   return (
-    <div className="container" style={{ padding: '20px', maxWidth: '800px', margin: '0 auto', fontFamily: 'sans-serif' }}>
-      <h1>📸 Random Cute Animals with Photos 🐾</h1>
-      <p>
-        Behold, **{randomAnimals.length}** adorable creatures, complete with a picture,
-        randomized on every server render.
-      </p>
+    <div className="container" style={{ 
+        padding: '0', // Adjust padding for the whole container
+        maxWidth: '800px', 
+        margin: '0 auto', 
+        fontFamily: 'sans-serif',
+        backgroundColor: '#f8f8f8', // Light background for the overall page
+        minHeight: '100vh',
+        boxShadow: '0 0 20px rgba(0,0,0,0.05)'
+      }}>
+      
+      {/* --- New: Title Design Section --- */}
+      <div style={{
+        backgroundColor: '#4CAF50', // A nice green background
+        color: '#fff',
+        padding: '40px 20px',
+        textAlign: 'center',
+        borderRadius: '0 0 15px 15px', // Rounded bottom corners
+        boxShadow: '0 5px 15px rgba(0,0,0,0.2)',
+        marginBottom: '40px' // Space below the title
+      }}>
+        <h1 style={{ margin: '0 0 10px 0', fontSize: '2.8em' }}>
+          📸 Random Cute Animals with Photos 🐾
+        </h1>
+        <p style={{ margin: '0', fontSize: '1.2em', opacity: 0.9 }}>
+          Behold, **{randomAnimals.length}** adorable creatures, complete with a picture,
+          randomized on every server render.
+        </p>
+      </div>
 
-      {/* Grid Display for Animals */}
+      {/* --- Animal Grid Display --- */}
       <div style={{ 
         display: 'grid', 
-        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
-        gap: '20px', 
-        marginTop: '30px' 
+        gridTemplateColumns: 'repeat(2, 1fr)', // Force a 2x2 grid for 4 items
+        gap: '25px', // Increased gap for better spacing
+        padding: '0 20px 40px', // Padding around the grid
       }}>
         {randomAnimals.map((animal) => (
           <div 
             key={animal.name} 
             style={{ 
               border: '1px solid #ddd', 
-              borderRadius: '8px', 
+              borderRadius: '12px', // Slightly more rounded corners
               overflow: 'hidden', 
-              boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
-              backgroundColor: '#fff'
+              boxShadow: '0 6px 15px rgba(0,0,0,0.1)', // More pronounced shadow
+              backgroundColor: '#fff',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between' // Distribute space
             }}
           >
-            {/* Using next/image for optimized images */}
-            <Image
-              src={animal.imageUrl}
-              alt={`A cute ${animal.name}`}
-              width={300} // Define width
-              height={200} // Define height
-              layout="responsive" // Make image responsive within its parent
-              objectFit="cover" // Ensure the image covers the area
-              style={{ borderRadius: '8px 8px 0 0' }}
-            />
+            {/* Image Container for Square Aspect Ratio */}
+            <div style={{ 
+              position: 'relative', 
+              width: '100%', 
+              paddingBottom: '100%', // Makes the container square (1:1 aspect ratio)
+              overflow: 'hidden',
+              borderRadius: '11px 11px 0 0', // Match parent border-radius
+              backgroundColor: '#eee' // Placeholder background for image loading
+            }}>
+              <Image
+                src={animal.imageUrl}
+                alt={`A cute ${animal.name}`}
+                fill // Fills the parent div
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Improve responsiveness
+                style={{ objectFit: 'cover' }} // Ensure the image covers the square area
+              />
+            </div>
+            
             <div style={{ padding: '15px', textAlign: 'center' }}>
               <h2 style={{ margin: '0 0 5px 0', fontSize: '1.4em', color: '#333' }}>
                 {animal.emoji} {animal.name}
@@ -80,7 +109,7 @@ export default function HomePageWithPhotos() {
         ))}
       </div>
 
-      <small style={{ marginTop: '40px', display: 'block', color: '#666', textAlign: 'center' }}>
+      <small style={{ marginTop: '20px', display: 'block', color: '#666', textAlign: 'center', paddingBottom: '20px' }}>
         Refresh the page to see a new random selection!
       </small>
     </div>
