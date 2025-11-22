@@ -16,7 +16,10 @@ const nextConfig = {
       'i.natgeofe.com',
       'animalfactguide.com',
       'wikipedia.com',
-      'cdn.mos.cms.futurecdn.net'
+      'cdn.mos.cms.futurecdn.net',
+      "www.thesprucepets.com",
+      "m.media-amazon.com",
+      "i.natgeofe.com"
     ],
   },
 };

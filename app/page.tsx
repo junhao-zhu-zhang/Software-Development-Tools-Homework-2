@@ -24,12 +24,12 @@ const ALL_CUTE_ANIMALS: Animal[] = [
   { name: 'Pomeranian', imageUrl: 'https://cdn.britannica.com/42/233842-050-E64243D7/Pomeranian-dog.jpg', emoji: '🐶', wikipediaUrl: 'https://en.wikipedia.org/wiki/Pomeranian_dog' },
 
   // Added animals
-  { name: 'Capybara', imageUrl: 'https://cdn.britannica.com/39/233939-050-4EC50136/Capybara.jpg', emoji: '🦫', wikipediaUrl: 'https://en.wikipedia.org/wiki/Capybara' },
-  { name: 'Polar Bear Cub', imageUrl: 'https://cdn.mos.cms.futurecdn.net/q6mE6xPD58Ll35p3xNmPR.jpg', emoji: '🐻‍❄️', wikipediaUrl: 'https://en.wikipedia.org/wiki/Polar_bear' },
-  { name: 'Golden Retriever Puppy', imageUrl: 'https://www.thesprucepets.com/thmb/7ul3e8DqRLVQjaxAgqW6zGyF_Qw=/2121x1414/filters:fill(auto,1)/golden-retriever-puppy-lying-on-the-grass-1092979412-5c77b47f46e0fb00015290a1.jpg', emoji: '🐕', wikipediaUrl: 'https://en.wikipedia.org/wiki/Golden_Retriever' },
-  { name: 'Hamster', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/8/8b/Cute_dwarf_hamster.jpg', emoji: '🐹', wikipediaUrl: 'https://en.wikipedia.org/wiki/Hamster' },
-  { name: 'Snow Leopard Cub', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/0/0f/Snow_Leopard_Cub.jpg', emoji: '🐆', wikipediaUrl: 'https://en.wikipedia.org/wiki/Snow_leopard' },
-  { name: 'Baby Seal', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/0/0c/Harp_seal_baby.jpg', emoji: '🦭', wikipediaUrl: 'https://en.wikipedia.org/wiki/Seal' }
+  { name: 'Capybara', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Hydrochoeris_hydrochaeris_in_Brazil_in_Petr%C3%B3polis%2C_Rio_de_Janeiro%2C_Brazil_09.jpg/500px-Hydrochoeris_hydrochaeris_in_Brazil_in_Petr%C3%B3polis%2C_Rio_de_Janeiro%2C_Brazil_09.jpg', emoji: '🦫', wikipediaUrl: 'https://en.wikipedia.org/wiki/Capybara' },
+  { name: 'Polar Bear Cub', imageUrl: 'https://images.ctfassets.net/i04syw39vv9p/124UGQIEgROYoBKKPzm2oM/aac2ecd5e8931acf01d99b2e4c5082c4/Top-5-Favorite-Mom-and-Cub-Facts-03.jpeg?w=750&h=500&q=70&fit=fill&fm=png', emoji: '🐻‍❄️', wikipediaUrl: 'https://en.wikipedia.org/wiki/Polar_bear' },
+  { name: 'Golden Retriever Puppy', imageUrl: 'https://m.media-amazon.com/images/I/613k8S4lp7L._AC_UF894,1000_QL80_.jpg', emoji: '🐕', wikipediaUrl: 'https://en.wikipedia.org/wiki/Golden_Retriever' },
+  { name: 'Hamster', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/European_hamster_%28Cricetus_cricetus%29_Meidling.jpg/500px-European_hamster_%28Cricetus_cricetus%29_Meidling.jpg', emoji: '🐹', wikipediaUrl: 'https://en.wikipedia.org/wiki/Hamster' },
+  { name: 'Snow Leopard Cub', imageUrl: 'https://i.natgeofe.com/k/cd962d91-1791-42b2-a25b-7d56a6b23811/snow-leopard-cub.jpg', emoji: '🐆', wikipediaUrl: 'https://en.wikipedia.org/wiki/Snow_leopard' },
+  { name: 'Baby Seal', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/22/Harp_Seal_%28Pagophilus_groenlandicus%29%2C_Greenland_Sea_IMG_5075.jpg', emoji: '🦭', wikipediaUrl: 'https://en.wikipedia.org/wiki/Seal' }
 ];
 
 const getRandomAnimals = (array: Animal[], count: number): Animal[] => {
@@ -52,19 +52,38 @@ export default function HomePageWithPhotos() {
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '25px', padding: '0 20px 40px' }}>
         {randomAnimals.map((animal) => (
-          <a href={animal.wikipediaUrl} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: 'inherit' }}>
-          <div key={animal.name}$1>
-            <div style={{ position: 'relative', width: '100%', paddingBottom: '100%', overflow: 'hidden', borderRadius: '11px 11px 0 0', backgroundColor: '#eee' }}>
-              <a href={animal.wikipediaUrl} target="_blank" rel="noopener noreferrer">
-              <a href={animal.wikipediaUrl} target="_blank" rel="noopener noreferrer"><Image src={animal.imageUrl} alt={`A cute ${animal.name}`} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" style={{ objectFit: 'cover' }} /></a>
-            </a>
-            </div>
-            <div style={{ padding: '15px', textAlign: 'center' }}>
-              <h2 style={{ margin: '0 0 5px 0', fontSize: '1.4em', color: '#333' }}>{animal.emoji} {animal.name}</h2>
-            </div>
-          </div>
-        </a>
-        ))}
+  <a
+    key={animal.name}
+    href={animal.wikipediaUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{ textDecoration: 'none', color: 'inherit' }}
+  >
+    <div>
+      <div style={{
+        position: 'relative',
+        width: '100%',
+        paddingBottom: '100%',
+        overflow: 'hidden',
+        borderRadius: '11px 11px 0 0',
+        backgroundColor: '#eee'
+      }}>
+        <Image
+          src={animal.imageUrl}
+          alt={`A cute ${animal.name}`}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          style={{ objectFit: 'cover' }}
+        />
+      </div>
+
+      <div style={{ color: '#000', padding: '15px', textAlign: 'center' }}>
+        <h2 style={{ margin: 0 }}>{animal.emoji} {animal.name}</h2>
+      </div>
+    </div>
+  </a>
+))}
+
       </div>
 
       <small style={{ marginTop: '20px', display: 'block', color: '#666', textAlign: 'center', paddingBottom: '20px' }}>
