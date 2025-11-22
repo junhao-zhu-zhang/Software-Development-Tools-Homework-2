@@ -10,6 +10,8 @@ interface Animal {
   emoji: string;
 }
 
+const NAME = "App";
+
 const ALL_CUTE_ANIMALS: Animal[] = [
   // Added: wikipediaUrl for each animal
   { name: 'Panda', imageUrl: 'https://media.istockphoto.com/id/523761634/pl/zdj%C4%99cie/s%C5%82odkie-panda-nied%C5%BAwiedzia-wspinaj%C4%85cego-si%C4%99-si%C4%99-na-drzewo.jpg?s=612x612&w=0&k=20&c=9nZcnc5e3dU7NO1CKNlq8pzBgf11KdiJ7auPLtIIDDA=', emoji: '🐼', wikipediaUrl: 'https://en.wikipedia.org/wiki/Giant_panda' },
